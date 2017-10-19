@@ -1,0 +1,73 @@
+/* .App {
+  text-align: center; 
+} */
+
+.App-header {
+  background-color: #222;
+  height: 5em;
+  color: white;
+}
+
+.App-header img{
+  display: inline-block;
+  width: 60px;
+}
+
+.App-title {
+  display: inline-block;
+  margin-left: 1.5em;
+  font-size: 1.5em;
+}
+
+.hide {
+  display: none;
+}
+
+.icon, .icon img {
+  height: 30px;
+  width: 30px;
+}
+
+ .cardView .image img {
+  height: 250px;
+}
+
+.listView .image img {
+ height: 150px;
+}
+
+/*Table of Contents */
+.toc {
+  position: absolute;
+	list-style: none;
+  margin-bottom: 20px;
+  text-align: left;
+  width: 260px;
+}
+.toc li {
+  color: #00AAFF;
+  cursor: pointer;
+	overflow: hidden;
+  padding-bottom: 10px;
+}
+
+.toc li:hover {
+  color: #04ED56;
+  font-weight: bold;
+}
+
+.toc li.active{
+  color: #df8b2b
+}
+
+.chapterContent {   
+  position: absolute;
+  left: 300px;
+  margin: 0 20px;
+  text-align: left;
+}
+
+.chapterContent .text {
+  max-height: 600px;
+  overflow: auto;
+}

@@ -3,24 +3,37 @@ import PropTypes from 'prop-types';
 
 import IconButton from './IconButton';
 import TableOfContents from './TableOfContents';
-import returnIcon from '../assets/images/return_icon.jpg'
-
-import { bookContents } from '../sampleData/db.json';
+import returnIcon from '../assets/images/return_icon.jpg';
+import sorryNoContent from '../assets/images/sorry-no-content.jpg';
 
 export default class BookReader extends Component {
   constructor(props) {
     super(props);
 
-    const { chapters, selectedChapter } = this.getChapters(props.book.id);
-
     this.state = {
       bookId: props.book.id,
-      chapters,
-      selectedChapter,
+      chapters: [],
+      selectedChapter: {},
     }
 
     this.handleReturnToBookList = this.handleReturnToBookList.bind(this);
     this.handleSelectChapter = this.handleSelectChapter.bind(this);
+  }
+
+  componentDidMount() {
+    const { book: { id } } = this.props;
+
+    fetch(`http://localhost:3001/bookContents/${id}`)
+      .then(response => response.json())
+      .then(bookContents => {
+        const chapters = bookContents && bookContents.chapters ? bookContents.chapters : [];
+        const selectedChapter = chapters.length > 0 ? chapters[0] : null;
+
+        this.setState({ chapters, selectedChapter })
+      })
+      .catch(function (ex) {
+        console.log('error getting books', ex)
+      });
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -33,37 +46,26 @@ export default class BookReader extends Component {
     }
   }
 
-  getChapters(bookId) {
-    const contents = bookContents.find(item => item.bookId === bookId);
-    const chapters = contents && contents.chapters ? contents.chapters : [];
-    const selectedChapter = chapters.length > 0 ? chapters[0] : null;
-
-    return {
-      chapters,
-      selectedChapter,
-    }
-  }
-
   handleSelectChapter(id) {
     const selectedChapter = this.state.chapters.find(item => item.id === id);
     this.setState({ selectedChapter });
   }
 
-  handleReturnToBookList(){
-   this.props.handleBookSelected(null);
+  handleReturnToBookList() {
+    this.props.handleBookSelected(null);
   }
 
   render() {
     const { chapters, selectedChapter } = this.state;
     const { book: { title } } = this.props;
-    return ( 
+    return (
       <div>
         <h2>{title}</h2>
-       
+
         <IconButton
-                src={returnIcon}
-                alt="return to book list"
-                handleClick={this.handleReturnToBookList} />
+          src={returnIcon}
+          alt="return to book list"
+          handleClick={this.handleReturnToBookList} />
 
         {!!chapters.length &&
           <div>
@@ -79,7 +81,10 @@ export default class BookReader extends Component {
           </div>
         }
         {!chapters.length &&
-          <h2>This book currently doesn't have any content.</h2>
+          <div>
+            <h2>Sorry this book currently doesn't have any content.</h2>
+            <img src={sorryNoContent} alt="Hugs" />
+          </div>
         }
       </div>
     )

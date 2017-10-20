@@ -1,3 +1,20 @@
+## Where to Start
+This is a sample book reader application. I sole purpose is to show how to use ReactJS.
+
+```sh
+npm install
+
+#This will install json-server the api's that it generates are backed by JSON
+npm install json-server -g
+
+#this will run the json-server (run this from the project directory)
+json-server --watch ./src/sampleData/db.json --port 3001
+
+npm start
+```
+---
+
+### Starter App
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

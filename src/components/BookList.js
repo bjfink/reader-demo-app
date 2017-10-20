@@ -106,6 +106,10 @@ class BookList extends Component {
               ))
               }
 
+              {filteredBooks.length === 0 &&
+                <h2>No Books Found</h2>
+              }
+
             </div>
           </div>
         }

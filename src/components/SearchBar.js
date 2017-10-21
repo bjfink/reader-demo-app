@@ -18,6 +18,10 @@ export default class SearchBar extends Component {
     this.props.handleSetFilter(term);
   }
 
+  componentWillUnmount() {
+    this.props.handleSetFilter('');
+  }
+
   render() {
     return (
       <div>

@@ -125,18 +125,4 @@ class BookList extends Component {
   }
 }
 
-BookList.propTypes = {
-  books: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      title: PropTypes.string,
-      author: PropTypes.string,
-      imageUrl: PropTypes.string,
-      releaseDate: PropTypes.string,
-      language: PropTypes.string,
-      description: PropTypes.string,
-
-    }))
-}
-
 export default BookList;

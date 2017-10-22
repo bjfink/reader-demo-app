@@ -7,11 +7,12 @@ npm install
 #This will install json-server the api's that it generates are backed by JSON
 npm install json-server -g
 
-#this will run the json-server (run this from the project directory)
-json-server --watch ./src/sampleData/db.json --port 3001
-
+#To start the app
 npm start
+
 ```
+This app uses [Concurrently](https://github.com/kimmobrunfeldt/concurrently) to simultaneously run the reader-demo-app and the json server from the npm start command.
+
 ---
 
 ### Starter App

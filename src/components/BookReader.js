@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import IconButton from './IconButton';
 import TableOfContents from './TableOfContents';
-import returnIcon from '../assets/images/return_icon.jpg';
+import returnIcon from '../assets/images/back.svg';
 import sorryNoContent from '../assets/images/sorry-no-content.jpg';
 
 export default class BookReader extends Component {
@@ -68,7 +68,7 @@ export default class BookReader extends Component {
           handleClick={this.handleReturnToBookList} />
 
         {!!chapters.length &&
-          <div>
+          <div className="readerContainer">
             <TableOfContents
               chapters={chapters}
               handleSelectChapter={this.handleSelectChapter}

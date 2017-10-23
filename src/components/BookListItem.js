@@ -11,7 +11,7 @@ const BookListItem = ({ book: { author, description, id, imageUrl, releaseDate, 
       </div>
 
       <div className="details">
-        <div>{title}<span>{releaseDate}</span></div>
+        <div>{title}<span> {releaseDate}</span></div>
         <div>by {author}</div>
         <div className={classnames({ 'hide': isCardView })}>{language}</div>
         <div className={classnames({ 'hide': isCardView })}>{description}</div>

@@ -5,11 +5,18 @@ body {
   color: #fff;
 }
 
-header {
+.headerContainer {
   display: flex;
   align-items: center;
   padding: 16px 24px;
   background-color: #212121;  
+}
+
+header {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 header img {
@@ -24,6 +31,12 @@ header h1 {
   margin: 0;
 }
 
+.pageContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .bookList {
   padding: 24px;
 }
@@ -34,16 +47,33 @@ header h1 {
   margin-bottom: 24px;
 }
 
-.icons button {
+button {
   background: #fff;
   border: 0;
   margin: 0;
   padding: 4px 6px;
+  border: 1px solid rgba(0,0,0,0.24);
+  border-radius: 4px;
   cursor: pointer;
+  outline: none;
 }
 
-.icons button:hover {
+ button:hover {
   background: #00E676;
+}
+
+button.selected {
+  background: #00E676;
+}
+
+.icons button:first-of-type {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.icons button:last-of-type {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .bookList .btn {
@@ -51,10 +81,26 @@ header h1 {
 }
 
 .search {
+  position: relative;
+  display: flex;
   margin-bottom: 24px;
 }
 
+.search input {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #9E9E9E;
+  width: 100%;
+  padding: 16px 16px 16px 32px;
+  font-size: 16px;
+  color: #E0E0E0;
+  outline: none;
+}
 
+.search img {
+    position: absolute;
+    top: 14px;
+}
 
 .bookContainer {
   border: 1px solid transparent;
@@ -86,7 +132,9 @@ header h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
+  width: 100%;
+  min-width: 300px;
+  max-width: 350px;
   padding: 16px;
 }
 
@@ -100,50 +148,59 @@ header h1 {
   margin-bottom: 16px;
 }
 
-
-.hide {
-  display: none;
-}
-
-
-
 .listView .image img {
  height: 200px;
  margin-right: 16px;
 }
 
 /*Table of Contents */
-.toc {
-  position: absolute;
-	list-style: none;
-  margin-bottom: 20px;
-  text-align: left;
-  width: 260px;
+
+.readerContainer {
+  display: flex;
 }
+
+.toc {
+  flex: 1;
+	list-style: none;
+  margin-bottom: 24px;
+  padding: 0;
+  text-align: left;
+}
+
 .toc li {
-  color: #00AAFF;
+  color: #fff;
   cursor: pointer;
 	overflow: hidden;
-  padding-bottom: 10px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
 }
 
 .toc li:hover {
   color: #04ED56;
+  background: rgba(0,0,0,0.12); 
+  border: 1px solid rgba(0,0,0,0.24);
   font-weight: bold;
 }
 
 .toc li.active{
-  color: #df8b2b
+  color: #00E676;
+  background: rgba(0,0,0,0.12); 
+  border: 1px solid rgba(0,0,0,0.24);
 }
 
-.chapterContent {   
-  position: absolute;
-  left: 300px;
-  margin: 0 20px;
+.chapterContent {
+  flex: 4;
+  margin: 0 24px;
   text-align: left;
 }
 
 .chapterContent .text {
   max-height: 600px;
   overflow: auto;
+}
+
+/* Helper Classes */
+
+.hide {
+  display: none;
 }

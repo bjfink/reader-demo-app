@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 const BookListItem = ({ book: { author, description, id, imageUrl, releaseDate, language, title, }, book, isCardView, handleItemClick }) => {
   return (
-    <div onClick={() => handleItemClick(book)}>
+    <div className="bookContainer" onClick={() => handleItemClick(book)}>
 
       <div className="image">
         <img src={imageUrl} alt={title} />

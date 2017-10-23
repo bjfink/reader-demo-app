@@ -1,39 +1,115 @@
-/* .App {
-  text-align: center; 
-} */
-
-.App-header {
-  background-color: #222;
-  height: 5em;
-  color: white;
+body {
+  background-color: #424242;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #fff;
 }
 
-.App-header img{
-  display: inline-block;
-  width: 60px;
+header {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #212121;  
 }
 
-.App-title {
-  display: inline-block;
-  margin-left: 1.5em;
-  font-size: 1.5em;
+header img {
+  width: 30px;
+  height: 30px;
+  margin-right: 16px;
 }
+
+header h1 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.bookList {
+  padding: 24px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.icons button {
+  background: #fff;
+  border: 0;
+  margin: 0;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+.icons button:hover {
+  background: #00E676;
+}
+
+.bookList .btn {
+  display: flex;
+}
+
+.search {
+  margin-bottom: 24px;
+}
+
+
+
+.bookContainer {
+  border: 1px solid transparent;
+}
+
+
+.listView .bookContainer {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.listView .bookContainer:hover {
+  background: rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.24);
+}
+
+.listView .bookContainer .details div {
+  margin-bottom: 8px;
+}
+
+
+.cardView {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.cardView .bookContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  padding: 16px;
+}
+
+.cardView .bookContainer:hover {
+  background: rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.24);
+}
+
+.cardView .image img {
+  height: 250px;
+  margin-bottom: 16px;
+}
+
 
 .hide {
   display: none;
 }
 
-.icon, .icon img {
-  height: 30px;
-  width: 30px;
-}
 
- .cardView .image img {
-  height: 250px;
-}
 
 .listView .image img {
- height: 150px;
+ height: 200px;
+ margin-right: 16px;
 }
 
 /*Table of Contents */

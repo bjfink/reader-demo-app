@@ -4,11 +4,9 @@ import classnames from 'classnames';
 
 const IconButton = ({ alt, handleClick, selected, src }) => {
   return (
-    <div className={classnames('btn icon', { 'selected': selected })}>
-      <button onClick={handleClick}>
-        <img src={src} alt={alt} />
-      </button>
-    </div>
+    <button onClick={handleClick} className={classnames('btn icon', { 'selected': selected })}>
+      <img src={src} alt={alt} />
+    </button>
   )
 }
 

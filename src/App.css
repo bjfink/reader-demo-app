@@ -1,73 +1,206 @@
-/* .App {
-  text-align: center; 
-} */
-
-.App-header {
-  background-color: #222;
-  height: 5em;
-  color: white;
+body {
+  background-color: #424242;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #fff;
 }
 
-.App-header img{
-  display: inline-block;
-  width: 60px;
+.headerContainer {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #212121;  
 }
 
-.App-title {
-  display: inline-block;
-  margin-left: 1.5em;
-  font-size: 1.5em;
+header {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.hide {
-  display: none;
-}
-
-.icon, .icon img {
-  height: 30px;
+header img {
   width: 30px;
+  height: 30px;
+  margin-right: 16px;
 }
 
- .cardView .image img {
+header h1 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.pageContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bookList {
+  padding: 24px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+button {
+  background: #fff;
+  border: 0;
+  margin: 0;
+  padding: 4px 6px;
+  border: 1px solid rgba(0,0,0,0.24);
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+ button:hover {
+  background: #00E676;
+}
+
+button.selected {
+  background: #00E676;
+}
+
+.icons button:first-of-type {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.icons button:last-of-type {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.bookList .btn {
+  display: flex;
+}
+
+.search {
+  position: relative;
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.search input {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #9E9E9E;
+  width: 100%;
+  padding: 16px 16px 16px 32px;
+  font-size: 16px;
+  color: #E0E0E0;
+  outline: none;
+}
+
+.search img {
+    position: absolute;
+    top: 14px;
+}
+
+.bookContainer {
+  border: 1px solid transparent;
+}
+
+
+.listView .bookContainer {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.listView .bookContainer:hover {
+  background: rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.24);
+}
+
+.listView .bookContainer .details div {
+  margin-bottom: 8px;
+}
+
+
+.cardView {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.cardView .bookContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 300px;
+  max-width: 350px;
+  padding: 16px;
+}
+
+.cardView .bookContainer:hover {
+  background: rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.24);
+}
+
+.cardView .image img {
   height: 250px;
+  margin-bottom: 16px;
 }
 
 .listView .image img {
- height: 150px;
+ height: 200px;
+ margin-right: 16px;
 }
 
 /*Table of Contents */
-.toc {
-  position: absolute;
-	list-style: none;
-  margin-bottom: 20px;
-  text-align: left;
-  width: 260px;
+
+.readerContainer {
+  display: flex;
 }
+
+.toc {
+  flex: 1;
+	list-style: none;
+  margin-bottom: 24px;
+  padding: 0;
+  text-align: left;
+}
+
 .toc li {
-  color: #00AAFF;
+  color: #fff;
   cursor: pointer;
 	overflow: hidden;
-  padding-bottom: 10px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
 }
 
 .toc li:hover {
   color: #04ED56;
+  background: rgba(0,0,0,0.12); 
+  border: 1px solid rgba(0,0,0,0.24);
   font-weight: bold;
 }
 
 .toc li.active{
-  color: #df8b2b
+  color: #00E676;
+  background: rgba(0,0,0,0.12); 
+  border: 1px solid rgba(0,0,0,0.24);
 }
 
-.chapterContent {   
-  position: absolute;
-  left: 300px;
-  margin: 0 20px;
+.chapterContent {
+  flex: 4;
+  margin: 0 24px;
   text-align: left;
 }
 
 .chapterContent .text {
   max-height: 600px;
   overflow: auto;
+}
+
+/* Helper Classes */
+
+.hide {
+  display: none;
 }

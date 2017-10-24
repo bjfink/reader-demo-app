@@ -7,8 +7,8 @@ import BookReader from './BookReader';
 import IconButton from './IconButton';
 import SearchBar from './SearchBar';
 
-import cardIcon from '../assets/images/card_icon.jpg';
-import listIcon from '../assets/images/list_icon.jpg';
+import cardIcon from '../assets/images/cardView.svg';
+import listIcon from '../assets/images/listView.svg';
 
 class BookList extends Component {
   constructor(props) {

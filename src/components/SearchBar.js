@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import searchIcon from '../assets/images/search.svg';
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -24,7 +25,8 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <div>
+      <div className="search">
+        <img src={searchIcon} alt="Search"/>
         <input onChange={this.handleSearchTermChange} value={this.state.term} placeholder="Search..." />
       </div>
     )

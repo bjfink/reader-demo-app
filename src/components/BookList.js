@@ -64,7 +64,7 @@ class BookList extends Component {
   }
 
   render() {
-    const { displayCardView, displayListView, filteredBooks, selectedBook } = this.state;
+    const { displayCardView, displayListView, filteredBooks } = this.state;
     const { handleBookSelected } = this.props;
 
     return (

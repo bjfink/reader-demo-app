@@ -60,6 +60,7 @@ button {
 
  button:hover {
   background: #00E676;
+  cursor: pointer;
 }
 
 button.selected {
@@ -116,6 +117,7 @@ button.selected {
 .listView .bookContainer:hover {
   background: rgba(0,0,0,0.12);
   border: 1px solid rgba(0,0,0,0.24);
+  cursor: pointer;
 }
 
 .listView .bookContainer .details div {
@@ -141,6 +143,7 @@ button.selected {
 .cardView .bookContainer:hover {
   background: rgba(0,0,0,0.12);
   border: 1px solid rgba(0,0,0,0.24);
+  cursor: pointer;
 }
 
 .cardView .image img {
@@ -180,6 +183,7 @@ button.selected {
   background: rgba(0,0,0,0.12); 
   border: 1px solid rgba(0,0,0,0.24);
   font-weight: bold;
+  cursor: pointer;
 }
 
 .toc li.active{
@@ -197,6 +201,11 @@ button.selected {
 .chapterContent .text {
   max-height: 600px;
   overflow: auto;
+}
+
+.loadingContainer img{
+  widtH: 100px;
+  height:100px;
 }
 
 /* Helper Classes */

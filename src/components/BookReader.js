@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 import TableOfContents from './TableOfContents';
 import returnIcon from '../assets/images/back.svg';
+import loading from '../assets/images/loading.gif';
 import sorryNoContent from '../assets/images/sorry-no-content.jpg';
 
 export default class BookReader extends Component {
@@ -12,6 +13,7 @@ export default class BookReader extends Component {
 
     this.state = {
       bookId: props.book.id,
+      initialized: false,
       chapters: [],
       selectedChapter: {},
     }
@@ -29,7 +31,7 @@ export default class BookReader extends Component {
         const chapters = bookContents && bookContents.chapters ? bookContents.chapters : [];
         const selectedChapter = chapters.length > 0 ? chapters[0] : null;
 
-        this.setState({ chapters, selectedChapter })
+        this.setState({ chapters, initialized: true, selectedChapter })
       })
       .catch(function (ex) {
         console.log('error getting books', ex)
@@ -56,34 +58,43 @@ export default class BookReader extends Component {
   }
 
   render() {
-    const { chapters, selectedChapter } = this.state;
+    const { chapters, initialized, selectedChapter } = this.state;
     const { book: { title } } = this.props;
     return (
       <div>
-        <h2>{title}</h2>
-
-        <IconButton
-          src={returnIcon}
-          alt="return to book list"
-          handleClick={this.handleReturnToBookList} />
-
-        {!!chapters.length &&
-          <div className="readerContainer">
-            <TableOfContents
-              chapters={chapters}
-              handleSelectChapter={this.handleSelectChapter}
-              selectedChapterId={selectedChapter.id}
-            />
-            <div className="chapterContent">
-              <h3>{selectedChapter.title}</h3>
-              <div className="text" dangerouslySetInnerHTML={{ __html: selectedChapter.content }} />
-            </div>
+        {!initialized &&
+          <div className="loadingContainer">
+            <img src={loading} alt="loading" />
           </div>
         }
-        {!chapters.length &&
+        {initialized &&
           <div>
-            <h2>Sorry this book currently doesn't have any content.</h2>
-            <img src={sorryNoContent} alt="Hugs" />
+            <h2>{title}</h2>
+
+            <IconButton
+              src={returnIcon}
+              alt="return to book list"
+              handleClick={this.handleReturnToBookList} />
+
+            {!!chapters.length &&
+              <div className="readerContainer">
+                <TableOfContents
+                  chapters={chapters}
+                  handleSelectChapter={this.handleSelectChapter}
+                  selectedChapterId={selectedChapter.id}
+                />
+                <div className="chapterContent">
+                  <h3>{selectedChapter.title}</h3>
+                  <div className="text" dangerouslySetInnerHTML={{ __html: selectedChapter.content }} />
+                </div>
+              </div>
+            }
+            {!chapters.length &&
+              <div>
+                <h2>Sorry this book currently doesn't have any content.</h2>
+                <img src={sorryNoContent} alt="Hugs" />
+              </div>
+            }
           </div>
         }
       </div>

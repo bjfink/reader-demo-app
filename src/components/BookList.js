@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import BookListItem from './BookListItem';
-import BookReader from './BookReader';
 import IconButton from './IconButton';
 import SearchBar from './SearchBar';
 
@@ -106,6 +105,10 @@ class BookList extends Component {
       </div>
     )
   }
+}
+
+BookList.propTypes = {
+  handleBookSelected: PropTypes.func,
 }
 
 export default BookList;

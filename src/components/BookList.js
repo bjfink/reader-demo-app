@@ -19,10 +19,8 @@ class BookList extends Component {
       displayCardView: false,
       displayListView: true,
       filteredBooks: [],
-      selectedBook: null,
     }
 
-    this.handleBookSelected = this.handleBookSelected.bind(this);
     this.handleSetFilter = this.handleSetFilter.bind(this);
     this.handleToggleCardViewDisplay = this.handleToggleCardViewDisplay.bind(this);
     this.handleToggleListViewDisplay = this.handleToggleListViewDisplay.bind(this);
@@ -35,10 +33,6 @@ class BookList extends Component {
       .catch(function (ex) {
         console.log('error getting books', ex)
       });
-  }
-
-  handleBookSelected(selectedBook) {
-    this.setState({ selectedBook });
   }
 
   handleSetFilter(term) {
@@ -71,55 +65,44 @@ class BookList extends Component {
 
   render() {
     const { displayCardView, displayListView, filteredBooks, selectedBook } = this.state;
+    const { handleBookSelected } = this.props;
 
     return (
-      <div className="bookList">
-        {!selectedBook &&
+      <div>
+        <div className="icons">
 
-          <div>
-            <div className="icons">
+          <IconButton
+            src={cardIcon}
+            alt="card"
+            selected={displayCardView}
+            handleClick={this.handleToggleCardViewDisplay} />
 
-              <IconButton
-                src={cardIcon}
-                alt="card"
-                selected={displayCardView}
-                handleClick={this.handleToggleCardViewDisplay} />
+          <IconButton
+            src={listIcon}
+            alt="list"
+            selected={displayListView}
+            handleClick={this.handleToggleListViewDisplay} />
 
-              <IconButton
-                src={listIcon}
-                alt="list"
-                selected={displayListView}
-                handleClick={this.handleToggleListViewDisplay} />
+        </div>
 
-            </div>
+        <SearchBar handleSetFilter={this.handleSetFilter} />
 
-            <SearchBar handleSetFilter={this.handleSetFilter} />
+        <div className={classnames({ 'cardView': displayCardView, listView: displayListView })}>
 
-            <div className={classnames({ 'cardView': displayCardView, listView: displayListView })}>
+          {filteredBooks.map(book => (
+            <BookListItem
+              isCardView={displayCardView}
+              key={book.id}
+              book={book}
+              handleItemClick={handleBookSelected} />
+          ))
+          }
 
-              {filteredBooks.map(book => (
-                <BookListItem
-                  isCardView={displayCardView}
-                  key={book.id}
-                  book={book}
-                  handleItemClick={this.handleBookSelected} />
-              ))
-              }
+          {filteredBooks.length === 0 &&
+            <h2>No Books Found</h2>
+          }
 
-              {filteredBooks.length === 0 &&
-                <h2>No Books Found</h2>
-              }
-
-            </div>
-          </div>
-        }
-
-        {selectedBook &&
-          <BookReader
-            book={selectedBook}
-            handleBookSelected={this.handleBookSelected} />
-        }
-
+        </div>
       </div>
     )
   }

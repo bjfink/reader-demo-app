@@ -21,7 +21,7 @@ const BookListItem = ({ book: { author, description, id, imageUrl, releaseDate, 
   )
 }
 
-BookListItem.defaultprops = {
+BookListItem.defaultProps = {
   book: {},
 };
 

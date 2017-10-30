@@ -25,7 +25,7 @@ export default class BookReader extends Component {
   componentDidMount() {
     const { bookId, chapterId } = this.props.match.params;
 
-    fetch(`http://localhost:3006/bookList/${bookId}`)
+    fetch(`http://localhost:3001/bookList/${bookId}`)
       .then(response => response.json())
       .then(book => {
         this.setState({ book: book || {} })
@@ -34,7 +34,7 @@ export default class BookReader extends Component {
         console.log('error getting book', ex)
       });
 
-    fetch(`http://localhost:3006/bookContents/${bookId}`)
+    fetch(`http://localhost:3001/bookContents/${bookId}`)
       .then(response => response.json())
       .then(bookContents => {
         const chapters = bookContents && bookContents.chapters ? bookContents.chapters : [];

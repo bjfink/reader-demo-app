@@ -6,7 +6,7 @@ import classnames from 'classnames';
 const BookListItem = ({ book: { author, description, id, imageUrl, releaseDate, language, title, }, book, isCardView }) => {
   return (
     <div className="bookContainer">
-      <Link to={`/reader/${id}`}>
+      <Link to={`/reader/${id}/`}>
         <div className="image">
           <img src={imageUrl} alt={title} />
         </div>

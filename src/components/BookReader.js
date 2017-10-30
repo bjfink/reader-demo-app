@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import IconButton from './IconButton';
+import LinkButton from './LinkButton';
 import TableOfContents from './TableOfContents';
 import returnIcon from '../assets/images/back.svg';
 import loading from '../assets/images/loading.gif';
@@ -12,7 +12,7 @@ export default class BookReader extends Component {
     super(props);
 
     this.state = {
-      bookId: props.book.id,
+      book: {},
       initialized: false,
       chapters: [],
       selectedChapter: {},
@@ -23,30 +23,44 @@ export default class BookReader extends Component {
   }
 
   componentDidMount() {
-    const { book: { id } } = this.props;
+    const { bookId, chapterId } = this.props.match.params;
 
-    fetch(`http://localhost:3001/bookContents/${id}`)
+    fetch(`http://localhost:3006/bookList/${bookId}`)
+      .then(response => response.json())
+      .then(book => {
+        this.setState({ book: book || {} })
+      })
+      .catch(function (ex) {
+        console.log('error getting book', ex)
+      });
+
+    fetch(`http://localhost:3006/bookContents/${bookId}`)
       .then(response => response.json())
       .then(bookContents => {
         const chapters = bookContents && bookContents.chapters ? bookContents.chapters : [];
-        const selectedChapter = chapters.length > 0 ? chapters[0] : null;
+        let selectedChapter = chapters.length > 0 ? chapters[0] : {};
+
+        if (chapters && chapterId) {
+          selectedChapter =  chapters[chapterId] || selectedChapter;
+        }
 
         this.setState({ chapters, initialized: true, selectedChapter })
       })
       .catch(function (ex) {
-        console.log('error getting books', ex)
+        console.log('error getting book contents', ex)
       });
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    const { bookId } = this.state;
 
-    if (bookId !== nextProps.book.id) {
-      const { chapters, selectedChapter } = this.getChapters(bookId);
+  componentWillReceiveProps(nextProps) {
+    const selectedChapterId = this.state.selectedChapter.id;
+    const nextSelectedChaopterId = parseInt(nextProps.match.params.chapterId);
 
-      this.setState({ bookId, chapters, selectedChapter })
+    if (selectedChapterId != nextSelectedChaopterId) {
+      this.handleSelectChapter(nextSelectedChaopterId);
     }
   }
+
 
   handleSelectChapter(id) {
     const selectedChapter = this.state.chapters.find(item => item.id === id);
@@ -58,8 +72,9 @@ export default class BookReader extends Component {
   }
 
   render() {
-    const { chapters, initialized, selectedChapter } = this.state;
-    const { book: { title } } = this.props;
+    const { book: { title }, chapters, initialized, selectedChapter } = this.state;
+    const { match } = this.props;
+
     return (
       <div>
         {!initialized &&
@@ -71,14 +86,17 @@ export default class BookReader extends Component {
           <div>
             <h2>{title}</h2>
 
-            <IconButton
+            <LinkButton
               src={returnIcon}
               alt="return to book list"
-              handleClick={this.handleReturnToBookList} />
+              to={'/'}
+              icon
+            />
 
             {!!chapters.length &&
               <div className="readerContainer">
                 <TableOfContents
+                  baseUrl={match.url}
                   chapters={chapters}
                   handleSelectChapter={this.handleSelectChapter}
                   selectedChapterId={selectedChapter.id}

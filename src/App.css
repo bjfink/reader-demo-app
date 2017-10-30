@@ -107,6 +107,11 @@ button.selected {
   border: 1px solid transparent;
 }
 
+.bookContainer a {
+  color: #fff;
+  text-decoration: none;
+}
+
 
 .listView .bookContainer {
   display: flex;
